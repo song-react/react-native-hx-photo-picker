@@ -1,0 +1,23 @@
+{
+  "$schema": "https://nitro.margelo.com/nitro.schema.json",
+  "cxxNamespace": [
+    "hxphotopicker"
+  ],
+  "ios": {
+    "iosModuleName": "NitroHxPhotoPicker"
+  },
+  "android": {
+    "androidNamespace": [
+      "hxphotopicker"
+    ],
+    "androidCxxLibName": "NitroHxPhotoPicker"
+  },
+  "autolinking": {
+    "HXPhotoPicker": {
+      "swift": "HXPhotoPickerImpl"
+    }
+  },
+  "ignorePaths": [
+    "**/node_modules"
+  ]
+}
