@@ -5,7 +5,6 @@
 /// Copyright © Marc Rousavy @ Margelo
 ///
 
-import Foundation
 import NitroModules
 
 /**
@@ -97,22 +96,50 @@ public extension EditorBrushConfig {
   
   @inline(__always)
   var defaultColorIndex: Double? {
-    return self.__defaultColorIndex.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__defaultColorIndex) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__defaultColorIndex)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var lineWidth: Double? {
-    return self.__lineWidth.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__lineWidth) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__lineWidth)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var maximumLinewidth: Double? {
-    return self.__maximumLinewidth.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__maximumLinewidth) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__maximumLinewidth)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var minimumLinewidth: Double? {
-    return self.__minimumLinewidth.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__minimumLinewidth) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__minimumLinewidth)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)

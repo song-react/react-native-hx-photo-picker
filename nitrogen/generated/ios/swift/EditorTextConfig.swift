@@ -5,7 +5,6 @@
 /// Copyright © Marc Rousavy @ Margelo
 ///
 
-import Foundation
 import NitroModules
 
 /**
@@ -126,7 +125,14 @@ public extension EditorTextConfig {
   
   @inline(__always)
   var maximumLimitTextLength: Double? {
-    return self.__maximumLimitTextLength.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__maximumLimitTextLength) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__maximumLimitTextLength)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)

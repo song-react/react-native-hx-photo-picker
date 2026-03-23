@@ -30,6 +30,14 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     };
   }
   
+  // pragma MARK: std::function<void(const CaptureMediaResult& /* result */)>
+  Func_void_CaptureMediaResult create_Func_void_CaptureMediaResult(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = NitroHxPhotoPicker::Func_void_CaptureMediaResult::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const CaptureMediaResult& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
   // pragma MARK: std::shared_ptr<HybridHXPhotoPickerSpec>
   std::shared_ptr<HybridHXPhotoPickerSpec> create_std__shared_ptr_HybridHXPhotoPickerSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     NitroHxPhotoPicker::HybridHXPhotoPickerSpec_cxx swiftPart = NitroHxPhotoPicker::HybridHXPhotoPickerSpec_cxx::fromUnsafe(swiftUnsafePointer);

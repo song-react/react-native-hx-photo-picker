@@ -5,7 +5,6 @@
 /// Copyright © Marc Rousavy @ Margelo
 ///
 
-import Foundation
 import NitroModules
 
 /**
@@ -235,12 +234,26 @@ public extension AlbumListConfig {
   
   @inline(__always)
   var cellHeight: Double? {
-    return self.__cellHeight.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__cellHeight) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__cellHeight)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var splitCellHeight: Double? {
-    return self.__splitCellHeight.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__splitCellHeight) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__splitCellHeight)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)

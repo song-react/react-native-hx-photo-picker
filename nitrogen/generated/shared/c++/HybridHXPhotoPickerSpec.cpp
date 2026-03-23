@@ -15,6 +15,7 @@ namespace margelo::nitro::hxphotopicker {
     // load custom methods/properties
     registerHybrids(this, [](Prototype& prototype) {
       prototype.registerHybridMethod("picker", &HybridHXPhotoPickerSpec::picker);
+      prototype.registerHybridMethod("capture", &HybridHXPhotoPickerSpec::capture);
     });
   }
 

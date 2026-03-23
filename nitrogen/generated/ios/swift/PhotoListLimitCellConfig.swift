@@ -5,7 +5,6 @@
 /// Copyright © Marc Rousavy @ Margelo
 ///
 
-import Foundation
 import NitroModules
 
 /**
@@ -133,12 +132,26 @@ public extension PhotoListLimitCellConfig {
   
   @inline(__always)
   var lineWidth: Double? {
-    return self.__lineWidth.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__lineWidth) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__lineWidth)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var lineLength: Double? {
-    return self.__lineLength.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__lineLength) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__lineLength)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)

@@ -17,10 +17,19 @@
 namespace margelo::nitro::hxphotopicker { struct PickerConfig; }
 // Forward declaration of `PickerResult` to properly resolve imports.
 namespace margelo::nitro::hxphotopicker { struct PickerResult; }
+// Forward declaration of `CameraConfig` to properly resolve imports.
+namespace margelo::nitro::hxphotopicker { struct CameraConfig; }
+// Forward declaration of `CaptureType` to properly resolve imports.
+namespace margelo::nitro::hxphotopicker { enum class CaptureType; }
+// Forward declaration of `CaptureMediaResult` to properly resolve imports.
+namespace margelo::nitro::hxphotopicker { struct CaptureMediaResult; }
 
 #include "PickerConfig.hpp"
 #include "PickerResult.hpp"
 #include <functional>
+#include "CameraConfig.hpp"
+#include "CaptureType.hpp"
+#include "CaptureMediaResult.hpp"
 
 namespace margelo::nitro::hxphotopicker {
 
@@ -54,6 +63,7 @@ namespace margelo::nitro::hxphotopicker {
     public:
       // Methods
       virtual void picker(const PickerConfig& config, const std::function<void(const PickerResult& /* result */)>& complete, const std::function<void()>& cancel) = 0;
+      virtual void capture(const CameraConfig& config, CaptureType type, const std::function<void(const CaptureMediaResult& /* result */)>& complete, const std::function<void()>& cancel) = 0;
 
     protected:
       // Hybrid Setup

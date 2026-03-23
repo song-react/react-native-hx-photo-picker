@@ -5,7 +5,6 @@
 /// Copyright © Marc Rousavy @ Margelo
 ///
 
-import Foundation
 import NitroModules
 
 /**
@@ -641,37 +640,86 @@ public extension PickerConfig {
   
   @inline(__always)
   var maximumSelectedPhotoCount: Double? {
-    return self.__maximumSelectedPhotoCount.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__maximumSelectedPhotoCount) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__maximumSelectedPhotoCount)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var maximumSelectedVideoCount: Double? {
-    return self.__maximumSelectedVideoCount.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__maximumSelectedVideoCount) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__maximumSelectedVideoCount)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var maximumSelectedCount: Double? {
-    return self.__maximumSelectedCount.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__maximumSelectedCount) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__maximumSelectedCount)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var maximumSelectedVideoDuration: Double? {
-    return self.__maximumSelectedVideoDuration.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__maximumSelectedVideoDuration) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__maximumSelectedVideoDuration)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var minimumSelectedVideoDuration: Double? {
-    return self.__minimumSelectedVideoDuration.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__minimumSelectedVideoDuration) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__minimumSelectedVideoDuration)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var maximumSelectedVideoFileSize: Double? {
-    return self.__maximumSelectedVideoFileSize.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__maximumSelectedVideoFileSize) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__maximumSelectedVideoFileSize)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var maximumSelectedPhotoFileSize: Double? {
-    return self.__maximumSelectedPhotoFileSize.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__maximumSelectedPhotoFileSize) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__maximumSelectedPhotoFileSize)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
@@ -688,7 +736,14 @@ public extension PickerConfig {
   
   @inline(__always)
   var maximumVideoEditDuration: Double? {
-    return self.__maximumVideoEditDuration.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__maximumVideoEditDuration) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__maximumVideoEditDuration)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)

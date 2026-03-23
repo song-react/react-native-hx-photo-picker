@@ -3,6 +3,8 @@ import { NitroModules } from 'react-native-nitro-modules'
 import type { HXPhotoPicker } from './specs/HXPhotoPicker.nitro'
 
 export type {
+  CaptureMediaResult,
+  CaptureType,
   ActivityIndicatorStyleOption,
   AlbumListConfig,
   AlbumShowModeConfig,

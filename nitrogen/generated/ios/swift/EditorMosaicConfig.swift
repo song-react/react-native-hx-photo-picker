@@ -5,7 +5,6 @@
 /// Copyright © Marc Rousavy @ Margelo
 ///
 
-import Foundation
 import NitroModules
 
 /**
@@ -55,17 +54,38 @@ public extension EditorMosaicConfig {
 
   @inline(__always)
   var mosaicWidth: Double? {
-    return self.__mosaicWidth.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__mosaicWidth) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__mosaicWidth)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var mosaiclineWidth: Double? {
-    return self.__mosaiclineWidth.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__mosaiclineWidth) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__mosaiclineWidth)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var smearWidth: Double? {
-    return self.__smearWidth.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__smearWidth) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__smearWidth)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)

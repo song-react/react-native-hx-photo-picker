@@ -5,7 +5,6 @@
 /// Copyright © Marc Rousavy @ Margelo
 ///
 
-import Foundation
 import NitroModules
 
 /**
@@ -268,12 +267,26 @@ public extension CameraConfig {
   
   @inline(__always)
   var videoMaximumDuration: Double? {
-    return self.__videoMaximumDuration.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__videoMaximumDuration) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__videoMaximumDuration)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var videoMinimumDuration: Double? {
-    return self.__videoMinimumDuration.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__videoMinimumDuration) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__videoMinimumDuration)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
@@ -307,7 +320,14 @@ public extension CameraConfig {
   
   @inline(__always)
   var videoMaxZoomScale: Double? {
-    return self.__videoMaxZoomScale.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__videoMaxZoomScale) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__videoMaxZoomScale)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)

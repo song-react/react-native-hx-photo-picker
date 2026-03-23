@@ -812,10 +812,26 @@ export interface PickerResult {
   photoAssets: PickerPhotoAsset[]
 }
 
+export type CaptureType = MediaType | 'all'
+
+export interface CaptureMediaResult {
+  uri: string
+  type: MediaType
+  width: number
+  height: number
+  localIdentifier?: string
+}
+
 export interface HXPhotoPicker extends HybridObject<{ ios: 'swift' }> {
   picker(
     config: PickerConfig,
     complete: (result: PickerResult) => void,
+    cancel: () => void
+  ): void
+  capture(
+    config: CameraConfig,
+    type: CaptureType,
+    complete: (result: CaptureMediaResult) => void,
     cancel: () => void
   ): void
 }
