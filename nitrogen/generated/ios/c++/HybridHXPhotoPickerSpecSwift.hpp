@@ -190,6 +190,12 @@ namespace margelo::nitro::hxphotopicker { struct NotAuthorizedConfig; }
 namespace margelo::nitro::hxphotopicker { struct PickerResult; }
 // Forward declaration of `PickerPhotoAsset` to properly resolve imports.
 namespace margelo::nitro::hxphotopicker { struct PickerPhotoAsset; }
+// Forward declaration of `CaptureType` to properly resolve imports.
+namespace margelo::nitro::hxphotopicker { enum class CaptureType; }
+// Forward declaration of `CaptureMediaResult` to properly resolve imports.
+namespace margelo::nitro::hxphotopicker { struct CaptureMediaResult; }
+// Forward declaration of `MediaType` to properly resolve imports.
+namespace margelo::nitro::hxphotopicker { enum class MediaType; }
 
 #include "PickerConfig.hpp"
 #include <string>
@@ -284,6 +290,9 @@ namespace margelo::nitro::hxphotopicker { struct PickerPhotoAsset; }
 #include "PickerResult.hpp"
 #include <functional>
 #include "PickerPhotoAsset.hpp"
+#include "CaptureType.hpp"
+#include "CaptureMediaResult.hpp"
+#include "MediaType.hpp"
 
 #include "NitroHxPhotoPicker-Swift-Cxx-Umbrella.hpp"
 
@@ -337,6 +346,12 @@ namespace margelo::nitro::hxphotopicker {
     // Methods
     inline void picker(const PickerConfig& config, const std::function<void(const PickerResult& /* result */)>& complete, const std::function<void()>& cancel) override {
       auto __result = _swiftPart.picker(std::forward<decltype(config)>(config), complete, cancel);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline void capture(const CameraConfig& config, CaptureType type, const std::function<void(const CaptureMediaResult& /* result */)>& complete, const std::function<void()>& cancel) override {
+      auto __result = _swiftPart.capture(std::forward<decltype(config)>(config), static_cast<int>(type), complete, cancel);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

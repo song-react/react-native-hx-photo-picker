@@ -42,6 +42,8 @@ namespace margelo::nitro::hxphotopicker { enum class CameraPresetOption; }
 namespace margelo::nitro::hxphotopicker { enum class CameraTakePhotoModeOption; }
 // Forward declaration of `CameraVideoCodecTypeOption` to properly resolve imports.
 namespace margelo::nitro::hxphotopicker { enum class CameraVideoCodecTypeOption; }
+// Forward declaration of `CaptureMediaResult` to properly resolve imports.
+namespace margelo::nitro::hxphotopicker { struct CaptureMediaResult; }
 // Forward declaration of `EditorBrushConfig` to properly resolve imports.
 namespace margelo::nitro::hxphotopicker { struct EditorBrushConfig; }
 // Forward declaration of `EditorButtonTypeOption` to properly resolve imports.
@@ -114,6 +116,8 @@ namespace margelo::nitro::hxphotopicker { enum class InterfaceOrientationOption;
 namespace margelo::nitro::hxphotopicker { enum class LanguageTypeOption; }
 // Forward declaration of `LoadNetworkVideoModeOption` to properly resolve imports.
 namespace margelo::nitro::hxphotopicker { enum class LoadNetworkVideoModeOption; }
+// Forward declaration of `MediaType` to properly resolve imports.
+namespace margelo::nitro::hxphotopicker { enum class MediaType; }
 // Forward declaration of `ModalPresentationStyleOption` to properly resolve imports.
 namespace margelo::nitro::hxphotopicker { enum class ModalPresentationStyleOption; }
 // Forward declaration of `NotAuthorizedConfig` to properly resolve imports.
@@ -209,6 +213,7 @@ namespace NitroHxPhotoPicker { class HybridHXPhotoPickerSpec_cxx; }
 #include "CameraPresetOption.hpp"
 #include "CameraTakePhotoModeOption.hpp"
 #include "CameraVideoCodecTypeOption.hpp"
+#include "CaptureMediaResult.hpp"
 #include "EditorBrushConfig.hpp"
 #include "EditorButtonTypeOption.hpp"
 #include "EditorChartletConfig.hpp"
@@ -245,6 +250,7 @@ namespace NitroHxPhotoPicker { class HybridHXPhotoPickerSpec_cxx; }
 #include "InterfaceOrientationOption.hpp"
 #include "LanguageTypeOption.hpp"
 #include "LoadNetworkVideoModeOption.hpp"
+#include "MediaType.hpp"
 #include "ModalPresentationStyleOption.hpp"
 #include "NotAuthorizedConfig.hpp"
 #include "PhotoAlbumControllerConfig.hpp"
@@ -307,7 +313,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline std::string get_std__optional_std__string_(const std::optional<std::string>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<bool>
@@ -322,7 +328,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline bool get_std__optional_bool_(const std::optional<bool>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<ModalPresentationStyleOption>
@@ -337,7 +343,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline ModalPresentationStyleOption get_std__optional_ModalPresentationStyleOption_(const std::optional<ModalPresentationStyleOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PickerPresentStyleOption>
@@ -352,7 +358,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PickerPresentStyleOption get_std__optional_PickerPresentStyleOption_(const std::optional<PickerPresentStyleOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<double>
@@ -367,7 +373,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline double get_std__optional_double_(const std::optional<double>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PickerPresentStyleConfig>
@@ -382,7 +388,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PickerPresentStyleConfig get_std__optional_PickerPresentStyleConfig_(const std::optional<PickerPresentStyleConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<LanguageTypeOption>
@@ -397,7 +403,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline LanguageTypeOption get_std__optional_LanguageTypeOption_(const std::optional<LanguageTypeOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<AppearanceStyleOption>
@@ -412,7 +418,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline AppearanceStyleOption get_std__optional_AppearanceStyleOption_(const std::optional<AppearanceStyleOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::vector<InterfaceOrientationOption>
@@ -438,7 +444,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline std::vector<InterfaceOrientationOption> get_std__optional_std__vector_InterfaceOrientationOption__(const std::optional<std::vector<InterfaceOrientationOption>>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::vector<PickerAssetOption>
@@ -464,7 +470,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline std::vector<PickerAssetOption> get_std__optional_std__vector_PickerAssetOption__(const std::optional<std::vector<PickerAssetOption>>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PickerSelectModeOption>
@@ -479,7 +485,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PickerSelectModeOption get_std__optional_PickerSelectModeOption_(const std::optional<PickerSelectModeOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<AlbumShowModeOption>
@@ -494,7 +500,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline AlbumShowModeOption get_std__optional_AlbumShowModeOption_(const std::optional<AlbumShowModeOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<AlbumShowModeConfig>
@@ -509,7 +515,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline AlbumShowModeConfig get_std__optional_AlbumShowModeConfig_(const std::optional<AlbumShowModeConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<SelectionTapActionOption>
@@ -524,7 +530,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline SelectionTapActionOption get_std__optional_SelectionTapActionOption_(const std::optional<SelectionTapActionOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorJumpStyleOption>
@@ -539,7 +545,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorJumpStyleOption get_std__optional_EditorJumpStyleOption_(const std::optional<EditorJumpStyleOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorJumpPushStyleOption>
@@ -554,7 +560,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorJumpPushStyleOption get_std__optional_EditorJumpPushStyleOption_(const std::optional<EditorJumpPushStyleOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorJumpPresentStyleOption>
@@ -569,7 +575,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorJumpPresentStyleOption get_std__optional_EditorJumpPresentStyleOption_(const std::optional<EditorJumpPresentStyleOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorJumpStyleConfig>
@@ -584,7 +590,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorJumpStyleConfig get_std__optional_EditorJumpStyleConfig_(const std::optional<EditorJumpStyleConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorButtonTypeOption>
@@ -599,7 +605,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorButtonTypeOption get_std__optional_EditorButtonTypeOption_(const std::optional<EditorButtonTypeOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorURLConfig>
@@ -614,7 +620,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorURLConfig get_std__optional_EditorURLConfig_(const std::optional<EditorURLConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorToolOption>
@@ -629,7 +635,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorToolOption get_std__optional_EditorToolOption_(const std::optional<EditorToolOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorFilterConfig>
@@ -644,7 +650,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorFilterConfig get_std__optional_EditorFilterConfig_(const std::optional<EditorFilterConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorPhotoConfig>
@@ -659,7 +665,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorPhotoConfig get_std__optional_EditorPhotoConfig_(const std::optional<EditorPhotoConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<ExportPresetOption>
@@ -674,7 +680,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline ExportPresetOption get_std__optional_ExportPresetOption_(const std::optional<ExportPresetOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorMusicConfig>
@@ -689,7 +695,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorMusicConfig get_std__optional_EditorMusicConfig_(const std::optional<EditorMusicConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorVideoCropTimeConfig>
@@ -704,7 +710,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorVideoCropTimeConfig get_std__optional_EditorVideoCropTimeConfig_(const std::optional<EditorVideoCropTimeConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorVideoConfig>
@@ -719,7 +725,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorVideoConfig get_std__optional_EditorVideoConfig_(const std::optional<EditorVideoConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::vector<std::string>
@@ -745,7 +751,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline std::vector<std::string> get_std__optional_std__vector_std__string__(const std::optional<std::vector<std::string>>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorBrushConfig>
@@ -760,7 +766,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorBrushConfig get_std__optional_EditorBrushConfig_(const std::optional<EditorBrushConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorChartletLoadSceneOption>
@@ -775,7 +781,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorChartletLoadSceneOption get_std__optional_EditorChartletLoadSceneOption_(const std::optional<EditorChartletLoadSceneOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::vector<EditorChartletItemConfig>
@@ -801,7 +807,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline std::vector<EditorChartletItemConfig> get_std__optional_std__vector_EditorChartletItemConfig__(const std::optional<std::vector<EditorChartletItemConfig>>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::vector<std::vector<EditorChartletItemConfig>>
@@ -827,7 +833,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline std::vector<std::vector<EditorChartletItemConfig>> get_std__optional_std__vector_std__vector_EditorChartletItemConfig___(const std::optional<std::vector<std::vector<EditorChartletItemConfig>>>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorChartletConfig>
@@ -842,7 +848,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorChartletConfig get_std__optional_EditorChartletConfig_(const std::optional<EditorChartletConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<FontWeightOption>
@@ -857,7 +863,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline FontWeightOption get_std__optional_FontWeightOption_(const std::optional<FontWeightOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<FontFamilyOption>
@@ -872,7 +878,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline FontFamilyOption get_std__optional_FontFamilyOption_(const std::optional<FontFamilyOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<FontConfig>
@@ -887,7 +893,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline FontConfig get_std__optional_FontConfig_(const std::optional<FontConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorTextConfig>
@@ -902,7 +908,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorTextConfig get_std__optional_EditorTextConfig_(const std::optional<EditorTextConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<Size>
@@ -917,7 +923,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline Size get_std__optional_Size_(const std::optional<Size>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorMaskTypeOption>
@@ -932,7 +938,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorMaskTypeOption get_std__optional_EditorMaskTypeOption_(const std::optional<EditorMaskTypeOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<BlurEffectStyleOption>
@@ -947,7 +953,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline BlurEffectStyleOption get_std__optional_BlurEffectStyleOption_(const std::optional<BlurEffectStyleOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorMaskTypeConfig>
@@ -962,7 +968,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorMaskTypeConfig get_std__optional_EditorMaskTypeConfig_(const std::optional<EditorMaskTypeConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::vector<EditorRatioConfig>
@@ -988,7 +994,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline std::vector<EditorRatioConfig> get_std__optional_std__vector_EditorRatioConfig__(const std::optional<std::vector<EditorRatioConfig>>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorCropSizeConfig>
@@ -1003,7 +1009,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorCropSizeConfig get_std__optional_EditorCropSizeConfig_(const std::optional<EditorCropSizeConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorMosaicConfig>
@@ -1018,7 +1024,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorMosaicConfig get_std__optional_EditorMosaicConfig_(const std::optional<EditorMosaicConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::vector<EditorToolOptionConfig>
@@ -1044,7 +1050,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline std::vector<EditorToolOptionConfig> get_std__optional_std__vector_EditorToolOptionConfig__(const std::optional<std::vector<EditorToolOptionConfig>>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorToolsViewConfig>
@@ -1059,7 +1065,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorToolsViewConfig get_std__optional_EditorToolsViewConfig_(const std::optional<EditorToolsViewConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<IndicatorTypeOption>
@@ -1074,7 +1080,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline IndicatorTypeOption get_std__optional_IndicatorTypeOption_(const std::optional<IndicatorTypeOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EditorConfig>
@@ -1089,7 +1095,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EditorConfig get_std__optional_EditorConfig_(const std::optional<EditorConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<StatusBarStyleOption>
@@ -1104,7 +1110,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline StatusBarStyleOption get_std__optional_StatusBarStyleOption_(const std::optional<StatusBarStyleOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<BarStyleOption>
@@ -1119,7 +1125,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline BarStyleOption get_std__optional_BarStyleOption_(const std::optional<BarStyleOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PhotoAlbumControllerConfig>
@@ -1134,7 +1140,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PhotoAlbumControllerConfig get_std__optional_PhotoAlbumControllerConfig_(const std::optional<PhotoAlbumControllerConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<AlbumListConfig>
@@ -1149,7 +1155,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline AlbumListConfig get_std__optional_AlbumListConfig_(const std::optional<AlbumListConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<ArrowViewConfig>
@@ -1164,7 +1170,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline ArrowViewConfig get_std__optional_ArrowViewConfig_(const std::optional<ArrowViewConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<AlbumTitleViewConfig>
@@ -1179,7 +1185,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline AlbumTitleViewConfig get_std__optional_AlbumTitleViewConfig_(const std::optional<AlbumTitleViewConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<SortOption>
@@ -1194,7 +1200,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline SortOption get_std__optional_SortOption_(const std::optional<SortOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<SelectBoxStyleOption>
@@ -1209,7 +1215,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline SelectBoxStyleOption get_std__optional_SelectBoxStyleOption_(const std::optional<SelectBoxStyleOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<SelectBoxConfig>
@@ -1224,7 +1230,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline SelectBoxConfig get_std__optional_SelectBoxConfig_(const std::optional<SelectBoxConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PhotoListCellConfig>
@@ -1239,7 +1245,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PhotoListCellConfig get_std__optional_PhotoListCellConfig_(const std::optional<PhotoListCellConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<ActivityIndicatorStyleOption>
@@ -1254,7 +1260,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline ActivityIndicatorStyleOption get_std__optional_ActivityIndicatorStyleOption_(const std::optional<ActivityIndicatorStyleOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PickerBottomViewConfig>
@@ -1269,7 +1275,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PickerBottomViewConfig get_std__optional_PickerBottomViewConfig_(const std::optional<PickerBottomViewConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PhotoListCameraCellConfig>
@@ -1284,7 +1290,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PhotoListCameraCellConfig get_std__optional_PhotoListCameraCellConfig_(const std::optional<PhotoListCameraCellConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PhotoListCameraTypeOption>
@@ -1299,7 +1305,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PhotoListCameraTypeOption get_std__optional_PhotoListCameraTypeOption_(const std::optional<PhotoListCameraTypeOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::vector<SystemCameraMediaTypeOption>
@@ -1325,7 +1331,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline std::vector<SystemCameraMediaTypeOption> get_std__optional_std__vector_SystemCameraMediaTypeOption__(const std::optional<std::vector<SystemCameraMediaTypeOption>>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<SystemCameraVideoQualityOption>
@@ -1340,7 +1346,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline SystemCameraVideoQualityOption get_std__optional_SystemCameraVideoQualityOption_(const std::optional<SystemCameraVideoQualityOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<SystemCameraDeviceOption>
@@ -1355,7 +1361,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline SystemCameraDeviceOption get_std__optional_SystemCameraDeviceOption_(const std::optional<SystemCameraDeviceOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<SystemCameraConfig>
@@ -1370,7 +1376,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline SystemCameraConfig get_std__optional_SystemCameraConfig_(const std::optional<SystemCameraConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PhotoListSaveSystemAlbumTypeOption>
@@ -1385,7 +1391,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PhotoListSaveSystemAlbumTypeOption get_std__optional_PhotoListSaveSystemAlbumTypeOption_(const std::optional<PhotoListSaveSystemAlbumTypeOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PhotoListSaveSystemAlbumTypeConfig>
@@ -1400,7 +1406,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PhotoListSaveSystemAlbumTypeConfig get_std__optional_PhotoListSaveSystemAlbumTypeConfig_(const std::optional<PhotoListSaveSystemAlbumTypeConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<CameraPresetOption>
@@ -1415,7 +1421,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline CameraPresetOption get_std__optional_CameraPresetOption_(const std::optional<CameraPresetOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<CameraAspectRatioOption>
@@ -1430,7 +1436,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline CameraAspectRatioOption get_std__optional_CameraAspectRatioOption_(const std::optional<CameraAspectRatioOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<CameraAspectRatioConfig>
@@ -1445,7 +1451,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline CameraAspectRatioConfig get_std__optional_CameraAspectRatioConfig_(const std::optional<CameraAspectRatioConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<CameraDevicePositionOption>
@@ -1460,7 +1466,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline CameraDevicePositionOption get_std__optional_CameraDevicePositionOption_(const std::optional<CameraDevicePositionOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<CameraFlashModeOption>
@@ -1475,7 +1481,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline CameraFlashModeOption get_std__optional_CameraFlashModeOption_(const std::optional<CameraFlashModeOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<CameraVideoCodecTypeOption>
@@ -1490,7 +1496,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline CameraVideoCodecTypeOption get_std__optional_CameraVideoCodecTypeOption_(const std::optional<CameraVideoCodecTypeOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<CameraTakePhotoModeOption>
@@ -1505,7 +1511,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline CameraTakePhotoModeOption get_std__optional_CameraTakePhotoModeOption_(const std::optional<CameraTakePhotoModeOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<CameraConfig>
@@ -1520,7 +1526,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline CameraConfig get_std__optional_CameraConfig_(const std::optional<CameraConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PhotoListCameraTypeConfig>
@@ -1535,7 +1541,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PhotoListCameraTypeConfig get_std__optional_PhotoListCameraTypeConfig_(const std::optional<PhotoListCameraTypeConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PhotoListLimitCellConfig>
@@ -1550,7 +1556,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PhotoListLimitCellConfig get_std__optional_PhotoListLimitCellConfig_(const std::optional<PhotoListLimitCellConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PhotoListAssetNumberConfig>
@@ -1565,7 +1571,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PhotoListAssetNumberConfig get_std__optional_PhotoListAssetNumberConfig_(const std::optional<PhotoListAssetNumberConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<EmptyViewConfig>
@@ -1580,7 +1586,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline EmptyViewConfig get_std__optional_EmptyViewConfig_(const std::optional<EmptyViewConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PhotoPickerPreviewJumpStyleOption>
@@ -1595,7 +1601,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PhotoPickerPreviewJumpStyleOption get_std__optional_PhotoPickerPreviewJumpStyleOption_(const std::optional<PhotoPickerPreviewJumpStyleOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PhotoListConfig>
@@ -1610,7 +1616,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PhotoListConfig get_std__optional_PhotoListConfig_(const std::optional<PhotoListConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<LoadNetworkVideoModeOption>
@@ -1625,7 +1631,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline LoadNetworkVideoModeOption get_std__optional_LoadNetworkVideoModeOption_(const std::optional<LoadNetworkVideoModeOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PreviewPlayTypeOption>
@@ -1640,7 +1646,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PreviewPlayTypeOption get_std__optional_PreviewPlayTypeOption_(const std::optional<PreviewPlayTypeOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PreviewViewLivePhotoMarkConfig>
@@ -1655,7 +1661,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PreviewViewLivePhotoMarkConfig get_std__optional_PreviewViewLivePhotoMarkConfig_(const std::optional<PreviewViewLivePhotoMarkConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PreviewViewHDRMarkConfig>
@@ -1670,7 +1676,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PreviewViewHDRMarkConfig get_std__optional_PreviewViewHDRMarkConfig_(const std::optional<PreviewViewHDRMarkConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PickerViewCancelTypeOption>
@@ -1685,7 +1691,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PickerViewCancelTypeOption get_std__optional_PickerViewCancelTypeOption_(const std::optional<PickerViewCancelTypeOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PickerViewCancelPositionOption>
@@ -1700,7 +1706,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PickerViewCancelPositionOption get_std__optional_PickerViewCancelPositionOption_(const std::optional<PickerViewCancelPositionOption>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<PreviewViewConfig>
@@ -1715,7 +1721,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline PreviewViewConfig get_std__optional_PreviewViewConfig_(const std::optional<PreviewViewConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::optional<NotAuthorizedConfig>
@@ -1730,7 +1736,7 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
     return optional.has_value();
   }
   inline NotAuthorizedConfig get_std__optional_NotAuthorizedConfig_(const std::optional<NotAuthorizedConfig>& optional) noexcept {
-    return *optional;
+    return optional.value();
   }
   
   // pragma MARK: std::vector<PickerPhotoAsset>
@@ -1786,6 +1792,28 @@ namespace margelo::nitro::hxphotopicker::bridge::swift {
   Func_void create_Func_void(void* NON_NULL swiftClosureWrapper) noexcept;
   inline Func_void_Wrapper wrap_Func_void(Func_void value) noexcept {
     return Func_void_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const CaptureMediaResult& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const CaptureMediaResult&)>`.
+   */
+  using Func_void_CaptureMediaResult = std::function<void(const CaptureMediaResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const CaptureMediaResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_CaptureMediaResult_Wrapper final {
+  public:
+    explicit Func_void_CaptureMediaResult_Wrapper(std::function<void(const CaptureMediaResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const CaptureMediaResult& /* result */)>>(std::move(func))) {}
+    inline void call(CaptureMediaResult result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const CaptureMediaResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_CaptureMediaResult create_Func_void_CaptureMediaResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_CaptureMediaResult_Wrapper wrap_Func_void_CaptureMediaResult(Func_void_CaptureMediaResult value) noexcept {
+    return Func_void_CaptureMediaResult_Wrapper(std::move(value));
   }
   
   // pragma MARK: std::shared_ptr<HybridHXPhotoPickerSpec>

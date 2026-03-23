@@ -5,7 +5,6 @@
 /// Copyright © Marc Rousavy @ Margelo
 ///
 
-import Foundation
 import NitroModules
 
 /**
@@ -55,12 +54,26 @@ public extension EditorVideoCropTimeConfig {
 
   @inline(__always)
   var maximumTime: Double? {
-    return self.__maximumTime.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__maximumTime) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__maximumTime)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var minimumTime: Double? {
-    return self.__minimumTime.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__minimumTime) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__minimumTime)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)

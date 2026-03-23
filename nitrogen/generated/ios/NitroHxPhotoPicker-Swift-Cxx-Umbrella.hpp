@@ -42,6 +42,10 @@ namespace margelo::nitro::hxphotopicker { enum class CameraPresetOption; }
 namespace margelo::nitro::hxphotopicker { enum class CameraTakePhotoModeOption; }
 // Forward declaration of `CameraVideoCodecTypeOption` to properly resolve imports.
 namespace margelo::nitro::hxphotopicker { enum class CameraVideoCodecTypeOption; }
+// Forward declaration of `CaptureMediaResult` to properly resolve imports.
+namespace margelo::nitro::hxphotopicker { struct CaptureMediaResult; }
+// Forward declaration of `CaptureType` to properly resolve imports.
+namespace margelo::nitro::hxphotopicker { enum class CaptureType; }
 // Forward declaration of `EditorBrushConfig` to properly resolve imports.
 namespace margelo::nitro::hxphotopicker { struct EditorBrushConfig; }
 // Forward declaration of `EditorButtonTypeOption` to properly resolve imports.
@@ -114,6 +118,8 @@ namespace margelo::nitro::hxphotopicker { enum class InterfaceOrientationOption;
 namespace margelo::nitro::hxphotopicker { enum class LanguageTypeOption; }
 // Forward declaration of `LoadNetworkVideoModeOption` to properly resolve imports.
 namespace margelo::nitro::hxphotopicker { enum class LoadNetworkVideoModeOption; }
+// Forward declaration of `MediaType` to properly resolve imports.
+namespace margelo::nitro::hxphotopicker { enum class MediaType; }
 // Forward declaration of `ModalPresentationStyleOption` to properly resolve imports.
 namespace margelo::nitro::hxphotopicker { enum class ModalPresentationStyleOption; }
 // Forward declaration of `NotAuthorizedConfig` to properly resolve imports.
@@ -207,6 +213,8 @@ namespace margelo::nitro::hxphotopicker { enum class SystemCameraVideoQualityOpt
 #include "CameraPresetOption.hpp"
 #include "CameraTakePhotoModeOption.hpp"
 #include "CameraVideoCodecTypeOption.hpp"
+#include "CaptureMediaResult.hpp"
+#include "CaptureType.hpp"
 #include "EditorBrushConfig.hpp"
 #include "EditorButtonTypeOption.hpp"
 #include "EditorChartletConfig.hpp"
@@ -243,6 +251,7 @@ namespace margelo::nitro::hxphotopicker { enum class SystemCameraVideoQualityOpt
 #include "InterfaceOrientationOption.hpp"
 #include "LanguageTypeOption.hpp"
 #include "LoadNetworkVideoModeOption.hpp"
+#include "MediaType.hpp"
 #include "ModalPresentationStyleOption.hpp"
 #include "NotAuthorizedConfig.hpp"
 #include "PhotoAlbumControllerConfig.hpp"

@@ -5,7 +5,6 @@
 /// Copyright © Marc Rousavy @ Margelo
 ///
 
-import Foundation
 import NitroModules
 
 /**
@@ -90,7 +89,14 @@ public extension EditorChartletConfig {
   
   @inline(__always)
   var rowCount: Double? {
-    return self.__rowCount.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__rowCount) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__rowCount)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)

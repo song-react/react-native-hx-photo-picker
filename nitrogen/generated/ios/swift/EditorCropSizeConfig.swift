@@ -5,7 +5,6 @@
 /// Copyright © Marc Rousavy @ Margelo
 ///
 
-import Foundation
 import NitroModules
 
 /**
@@ -155,7 +154,14 @@ public extension EditorCropSizeConfig {
   
   @inline(__always)
   var defaultSeletedIndex: Double? {
-    return self.__defaultSeletedIndex.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__defaultSeletedIndex) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__defaultSeletedIndex)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
@@ -184,11 +190,25 @@ public extension EditorCropSizeConfig {
   
   @inline(__always)
   var maskRowCount: Double? {
-    return self.__maskRowCount.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__maskRowCount) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__maskRowCount)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var maskLandscapeRowNumber: Double? {
-    return self.__maskLandscapeRowNumber.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__maskLandscapeRowNumber) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__maskLandscapeRowNumber)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
 }

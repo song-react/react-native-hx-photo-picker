@@ -5,7 +5,6 @@
 /// Copyright © Marc Rousavy @ Margelo
 ///
 
-import Foundation
 import NitroModules
 
 /**
@@ -131,6 +130,27 @@ open class HybridHXPhotoPickerSpec_cxx {
       try self.__implementation.picker(config: config, complete: { () -> (PickerResult) -> Void in
         let __wrappedFunction = bridge.wrap_Func_void_PickerResult(complete)
         return { (__result: PickerResult) -> Void in
+          __wrappedFunction.call(__result)
+        }
+      }(), cancel: { () -> () -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void(cancel)
+        return { () -> Void in
+          __wrappedFunction.call()
+        }
+      }())
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func capture(config: CameraConfig, type: Int32, complete: bridge.Func_void_CaptureMediaResult, cancel: bridge.Func_void) -> bridge.Result_void_ {
+    do {
+      try self.__implementation.capture(config: config, type: margelo.nitro.hxphotopicker.CaptureType(rawValue: type)!, complete: { () -> (CaptureMediaResult) -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void_CaptureMediaResult(complete)
+        return { (__result: CaptureMediaResult) -> Void in
           __wrappedFunction.call(__result)
         }
       }(), cancel: { () -> () -> Void in

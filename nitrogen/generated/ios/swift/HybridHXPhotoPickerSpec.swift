@@ -5,7 +5,6 @@
 /// Copyright © Marc Rousavy @ Margelo
 ///
 
-import Foundation
 import NitroModules
 
 /// See ``HybridHXPhotoPickerSpec``
@@ -15,6 +14,7 @@ public protocol HybridHXPhotoPickerSpec_protocol: HybridObject {
 
   // Methods
   func picker(config: PickerConfig, complete: @escaping (_ result: PickerResult) -> Void, cancel: @escaping () -> Void) throws -> Void
+  func capture(config: CameraConfig, type: CaptureType, complete: @escaping (_ result: CaptureMediaResult) -> Void, cancel: @escaping () -> Void) throws -> Void
 }
 
 public extension HybridHXPhotoPickerSpec_protocol {

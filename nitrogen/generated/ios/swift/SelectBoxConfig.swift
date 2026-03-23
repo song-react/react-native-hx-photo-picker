@@ -5,7 +5,6 @@
 /// Copyright © Marc Rousavy @ Margelo
 ///
 
-import Foundation
 import NitroModules
 
 /**
@@ -125,7 +124,14 @@ public extension SelectBoxConfig {
   
   @inline(__always)
   var titleFontSize: Double? {
-    return self.__titleFontSize.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__titleFontSize) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__titleFontSize)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
@@ -154,7 +160,14 @@ public extension SelectBoxConfig {
   
   @inline(__always)
   var tickWidth: Double? {
-    return self.__tickWidth.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__tickWidth) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__tickWidth)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
@@ -231,7 +244,14 @@ public extension SelectBoxConfig {
   
   @inline(__always)
   var borderWidth: Double? {
-    return self.__borderWidth.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__borderWidth) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__borderWidth)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)

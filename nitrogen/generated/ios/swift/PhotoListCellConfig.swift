@@ -5,7 +5,6 @@
 /// Copyright © Marc Rousavy @ Margelo
 ///
 
-import Foundation
 import NitroModules
 
 /**
@@ -133,7 +132,14 @@ public extension PhotoListCellConfig {
   
   @inline(__always)
   var targetWidth: Double? {
-    return self.__targetWidth.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__targetWidth) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__targetWidth)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
@@ -162,12 +168,26 @@ public extension PhotoListCellConfig {
   
   @inline(__always)
   var selectBoxTopMargin: Double? {
-    return self.__selectBoxTopMargin.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__selectBoxTopMargin) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__selectBoxTopMargin)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var selectBoxRightMargin: Double? {
-    return self.__selectBoxRightMargin.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__selectBoxRightMargin) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__selectBoxRightMargin)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)

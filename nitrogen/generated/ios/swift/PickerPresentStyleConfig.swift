@@ -5,7 +5,6 @@
 /// Copyright © Marc Rousavy @ Margelo
 ///
 
-import Foundation
 import NitroModules
 
 /**
@@ -42,6 +41,13 @@ public extension PickerPresentStyleConfig {
   
   @inline(__always)
   var rightSwipeTriggerRange: Double? {
-    return self.__rightSwipeTriggerRange.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__rightSwipeTriggerRange) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__rightSwipeTriggerRange)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
 }

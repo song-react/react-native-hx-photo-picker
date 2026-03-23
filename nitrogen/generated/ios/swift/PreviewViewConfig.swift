@@ -5,7 +5,6 @@
 /// Copyright © Marc Rousavy @ Margelo
 ///
 
-import Foundation
 import NitroModules
 
 /**
@@ -223,7 +222,14 @@ public extension PreviewViewConfig {
   
   @inline(__always)
   var maximumZoomScale: Double? {
-    return self.__maximumZoomScale.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__maximumZoomScale) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__maximumZoomScale)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)

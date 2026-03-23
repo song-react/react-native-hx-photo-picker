@@ -5,7 +5,6 @@
 /// Copyright © Marc Rousavy @ Margelo
 ///
 
-import Foundation
 import NitroModules
 
 /**
@@ -341,22 +340,50 @@ public extension PhotoListConfig {
   
   @inline(__always)
   var rowNumber: Double? {
-    return self.__rowNumber.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__rowNumber) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__rowNumber)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var landscapeRowNumber: Double? {
-    return self.__landscapeRowNumber.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__landscapeRowNumber) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__landscapeRowNumber)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var spltRowNumber: Double? {
-    return self.__spltRowNumber.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__spltRowNumber) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__spltRowNumber)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var spacing: Double? {
-    return self.__spacing.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__spacing) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__spacing)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
@@ -409,22 +436,50 @@ public extension PhotoListConfig {
   
   @inline(__always)
   var swipeSelectIgnoreLeftArea: Double? {
-    return self.__swipeSelectIgnoreLeftArea.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__swipeSelectIgnoreLeftArea) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__swipeSelectIgnoreLeftArea)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var swipeSelectScrollSpeed: Double? {
-    return self.__swipeSelectScrollSpeed.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__swipeSelectScrollSpeed) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__swipeSelectScrollSpeed)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var autoSwipeTopAreaHeight: Double? {
-    return self.__autoSwipeTopAreaHeight.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__autoSwipeTopAreaHeight) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__autoSwipeTopAreaHeight)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
   var autoSwipeBottomAreaHeight: Double? {
-    return self.__autoSwipeBottomAreaHeight.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__autoSwipeBottomAreaHeight) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__autoSwipeBottomAreaHeight)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)

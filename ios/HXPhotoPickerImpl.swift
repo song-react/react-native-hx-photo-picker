@@ -2,6 +2,7 @@ import AVFoundation
 import Foundation
 import HXPhotoPicker
 import MobileCoreServices
+import Photos
 import UIKit
 
 public final class HXPhotoPickerImpl: HybridHXPhotoPickerSpec {
@@ -27,6 +28,32 @@ public final class HXPhotoPickerImpl: HybridHXPhotoPickerSpec {
     }
   }
 
+  public func capture(
+    config: CameraConfig,
+    type: CaptureType,
+    complete: @escaping (CaptureMediaResult) -> Void,
+    cancel: @escaping () -> Void
+  ) throws {
+    DispatchQueue.main.async {
+      var cameraConfig = CameraConfiguration()
+      self.applyCameraConfig(config, to: &cameraConfig)
+
+      let controller = Photo.capture(
+        cameraConfig,
+        type: self.mapCaptureType(type)
+      ) { result, phAsset, _ in
+        guard let payload = self.mapCaptureResult(result, phAsset: phAsset) else {
+          cancel()
+          return
+        }
+        complete(payload)
+      }
+      controller.cancelHandler = { _ in
+        cancel()
+      }
+    }
+  }
+
   private func mapPickerResult(
     _ result: HXPhotoPicker.PickerResult
   ) -> PickerResult {
@@ -37,9 +64,87 @@ public final class HXPhotoPickerImpl: HybridHXPhotoPickerSpec {
     }
     return PickerResult(isOriginal: result.isOriginal, photoAssets: assets)
   }
+
+  private func mapCaptureResult(
+    _ result: CameraController.Result,
+    phAsset: PHAsset?
+  ) -> CaptureMediaResult? {
+    switch result {
+    case .image(let image):
+      let image = normalizeImage(image)
+      guard let url = writeCapturedImage(image) else {
+        return nil
+      }
+      return CaptureMediaResult(
+        uri: url.absoluteString,
+        type: .photo,
+        width: image.size.width,
+        height: image.size.height,
+        localIdentifier: phAsset?.localIdentifier
+      )
+    case .video(let url):
+      let size = videoSize(for: url)
+      return CaptureMediaResult(
+        uri: url.absoluteString,
+        type: .video,
+        width: size.width,
+        height: size.height,
+        localIdentifier: phAsset?.localIdentifier
+      )
+    }
+  }
 }
 
 private extension HXPhotoPickerImpl {
+  func mapCaptureType(_ type: CaptureType) -> CameraController.CaptureType {
+    switch type {
+    case .photo:
+      return .photo
+    case .video:
+      return .video
+    case .all:
+      return .all
+    }
+  }
+
+  func normalizeImage(_ image: UIImage) -> UIImage {
+    guard image.imageOrientation != .up else {
+      return image
+    }
+    let format = UIGraphicsImageRendererFormat()
+    format.opaque = false
+    format.scale = image.scale
+    return UIGraphicsImageRenderer(size: image.size, format: format).image { _ in
+      image.draw(in: CGRect(origin: .zero, size: image.size))
+    }
+  }
+
+  func writeCapturedImage(_ image: UIImage) -> URL? {
+    let data = image.jpegData(compressionQuality: 1) ?? image.pngData()
+    guard let data else {
+      return nil
+    }
+    let ext = image.jpegData(compressionQuality: 1) != nil ? "jpg" : "png"
+    let url = FileManager.default.temporaryDirectory.appendingPathComponent(
+      "\(UUID().uuidString).\(ext)"
+    )
+    do {
+      try data.write(to: url)
+      return url
+    } catch {
+      return nil
+    }
+  }
+
+  func videoSize(for url: URL) -> CGSize {
+    let asset = AVURLAsset(url: url)
+    guard let track = asset.tracks(withMediaType: .video).first else {
+      return .zero
+    }
+    let size = track.naturalSize.applying(track.preferredTransform)
+    return CGSize(width: abs(size.width), height: abs(size.height))
+  }
+
   func applyPickerConfig(
     _ config: PickerConfig,
     to pickerConfig: inout PickerConfiguration
@@ -1327,7 +1432,6 @@ private extension HXPhotoPickerImpl {
     }
   }
 
-  #if HXPICKER_ENABLE_CAMERA && !targetEnvironment(macCatalyst)
   func applyCameraConfig(
     _ config: CameraConfig,
     to cameraConfig: inout CameraConfiguration
@@ -1407,7 +1511,6 @@ private extension HXPhotoPickerImpl {
     }
     #endif
   }
-  #endif
 
   #if HXPICKER_ENABLE_EDITOR
   func applyEditorConfig(
@@ -1872,7 +1975,7 @@ private extension HXPhotoPickerImpl {
       return .present(rightSwipe: rightSwipe)
     case .some(.push):
       return .push(rightSwipe: rightSwipe)
-    case .none:
+    case nil:
       return .present(rightSwipe: rightSwipe)
     }
   }
@@ -2255,7 +2358,7 @@ private extension HXPhotoPickerImpl {
       return .displayName
     case .some(.custom):
       return .custom(config.customAlbumName ?? "")
-    case .none:
+    case nil:
       if let name = config.customAlbumName {
         return .custom(name)
       }
@@ -2323,7 +2426,6 @@ private extension HXPhotoPickerImpl {
     }
   }
 
-  #if HXPICKER_ENABLE_CAMERA && !targetEnvironment(macCatalyst)
   func mapCameraPreset(_ preset: CameraPresetOption) -> CameraConfiguration.Preset {
     switch preset {
     case .vga640x480:
@@ -2411,7 +2513,6 @@ private extension HXPhotoPickerImpl {
       return .click
     }
   }
-  #endif
 
   #if HXPICKER_ENABLE_EDITOR
   func mapEditorJumpStyle(

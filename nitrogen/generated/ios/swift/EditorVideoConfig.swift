@@ -5,7 +5,6 @@
 /// Copyright © Marc Rousavy @ Margelo
 ///
 
-import Foundation
 import NitroModules
 
 /**
@@ -72,7 +71,14 @@ public extension EditorVideoConfig {
   
   @inline(__always)
   var quality: Double? {
-    return self.__quality.value
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__quality) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__quality)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
