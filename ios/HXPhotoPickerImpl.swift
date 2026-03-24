@@ -20,8 +20,10 @@ public final class HXPhotoPickerImpl: HybridHXPhotoPickerSpec {
       self.applyPickerConfig(config, to: &pickerConfig)
 
       Photo.picker(pickerConfig) { result, _ in
-        let payload = self.mapPickerResult(result)
-        complete(payload)
+        Task {
+          let payload = await self.mapPickerResult(result)
+          complete(payload)
+        }
       } cancel: { _ in
         cancel()
       }
@@ -56,10 +58,28 @@ public final class HXPhotoPickerImpl: HybridHXPhotoPickerSpec {
 
   private func mapPickerResult(
     _ result: HXPhotoPicker.PickerResult
-  ) -> PickerResult {
-    let assets = result.photoAssets.map { asset in
-      PickerPhotoAsset(
-        localIdentifier: asset.identifier
+  ) async -> PickerResult {
+    let compression = result.isOriginal ? nil : result.compression
+    var assets: [PickerPhotoAsset] = []
+    for asset in result.photoAssets {
+      guard let urlResult = try? await asset.urlResult(
+        compression,
+        toFile: pickerFileConfig(for: asset)
+      ) else {
+        continue
+      }
+      let url =
+        asset.mediaType == .video
+          ? await readableVideoURL(for: asset, fallback: urlResult.url)
+          : urlResult.url
+      let size = asset.imageSize
+      assets.append(
+        PickerPhotoAsset(
+          uri: url.absoluteString,
+          type: asset.mediaType == .video ? .video : .photo,
+          width: size.width,
+          height: size.height
+        )
       )
     }
     return PickerResult(isOriginal: result.isOriginal, photoAssets: assets)
@@ -79,8 +99,7 @@ public final class HXPhotoPickerImpl: HybridHXPhotoPickerSpec {
         uri: url.absoluteString,
         type: .photo,
         width: image.size.width,
-        height: image.size.height,
-        localIdentifier: phAsset?.localIdentifier
+        height: image.size.height
       )
     case .video(let url):
       let size = videoSize(for: url)
@@ -88,14 +107,40 @@ public final class HXPhotoPickerImpl: HybridHXPhotoPickerSpec {
         uri: url.absoluteString,
         type: .video,
         width: size.width,
-        height: size.height,
-        localIdentifier: phAsset?.localIdentifier
+        height: size.height
       )
     }
   }
 }
 
 private extension HXPhotoPickerImpl {
+  func pickerFileConfig(for asset: PhotoAsset) -> PhotoAsset.FileConfig {
+    if asset.mediaType == .video {
+      return .init(videoURL: temporaryURL(ext: "mp4"))
+    }
+    return .init(imageURL: temporaryURL(ext: "jpg"))
+  }
+
+  func readableVideoURL(for asset: PhotoAsset, fallback: URL) async -> URL {
+    if FileManager.default.isReadableFile(atPath: fallback.path) {
+      return fallback
+    }
+    guard let phAsset = asset.phAsset else {
+      return fallback
+    }
+    let url = temporaryURL(ext: "mp4")
+    return await withCheckedContinuation { continuation in
+      AssetManager.requestOriginalVideoURL(for: phAsset, toFile: url) { result in
+        switch result {
+        case .success(let videoURL):
+          continuation.resume(returning: videoURL)
+        case .failure:
+          continuation.resume(returning: fallback)
+        }
+      }
+    }
+  }
+
   func mapCaptureType(_ type: CaptureType) -> CameraController.CaptureType {
     switch type {
     case .photo:
@@ -125,15 +170,19 @@ private extension HXPhotoPickerImpl {
       return nil
     }
     let ext = image.jpegData(compressionQuality: 1) != nil ? "jpg" : "png"
-    let url = FileManager.default.temporaryDirectory.appendingPathComponent(
-      "\(UUID().uuidString).\(ext)"
-    )
+    let url = temporaryURL(ext: ext)
     do {
       try data.write(to: url)
       return url
     } catch {
       return nil
     }
+  }
+
+  func temporaryURL(ext: String) -> URL {
+    FileManager.default.temporaryDirectory.appendingPathComponent(
+      "\(UUID().uuidString).\(ext)"
+    )
   }
 
   func videoSize(for url: URL) -> CGSize {

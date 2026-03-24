@@ -804,7 +804,10 @@ export interface PickerConfig {
 }
 
 export interface PickerPhotoAsset {
-  localIdentifier: string
+  uri: string
+  type: MediaType
+  width: number
+  height: number
 }
 
 export interface PickerResult {
@@ -819,7 +822,6 @@ export interface CaptureMediaResult {
   type: MediaType
   width: number
   height: number
-  localIdentifier?: string
 }
 
 export interface HXPhotoPicker extends HybridObject<{ ios: 'swift' }> {

@@ -33,7 +33,6 @@ namespace margelo::nitro::hxphotopicker { enum class MediaType; }
 
 #include <string>
 #include "MediaType.hpp"
-#include <optional>
 
 namespace margelo::nitro::hxphotopicker {
 
@@ -46,11 +45,10 @@ namespace margelo::nitro::hxphotopicker {
     MediaType type     SWIFT_PRIVATE;
     double width     SWIFT_PRIVATE;
     double height     SWIFT_PRIVATE;
-    std::optional<std::string> localIdentifier     SWIFT_PRIVATE;
 
   public:
     CaptureMediaResult() = default;
-    explicit CaptureMediaResult(std::string uri, MediaType type, double width, double height, std::optional<std::string> localIdentifier): uri(uri), type(type), width(width), height(height), localIdentifier(localIdentifier) {}
+    explicit CaptureMediaResult(std::string uri, MediaType type, double width, double height): uri(uri), type(type), width(width), height(height) {}
 
   public:
     friend bool operator==(const CaptureMediaResult& lhs, const CaptureMediaResult& rhs) = default;
@@ -69,8 +67,7 @@ namespace margelo::nitro {
         JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "uri"))),
         JSIConverter<margelo::nitro::hxphotopicker::MediaType>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "type"))),
         JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "width"))),
-        JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "height"))),
-        JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "localIdentifier")))
+        JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "height")))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::hxphotopicker::CaptureMediaResult& arg) {
@@ -79,7 +76,6 @@ namespace margelo::nitro {
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "type"), JSIConverter<margelo::nitro::hxphotopicker::MediaType>::toJSI(runtime, arg.type));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "width"), JSIConverter<double>::toJSI(runtime, arg.width));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "height"), JSIConverter<double>::toJSI(runtime, arg.height));
-      obj.setProperty(runtime, PropNameIDCache::get(runtime, "localIdentifier"), JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.localIdentifier));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -94,7 +90,6 @@ namespace margelo::nitro {
       if (!JSIConverter<margelo::nitro::hxphotopicker::MediaType>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "type")))) return false;
       if (!JSIConverter<double>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "width")))) return false;
       if (!JSIConverter<double>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "height")))) return false;
-      if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "localIdentifier")))) return false;
       return true;
     }
   };
