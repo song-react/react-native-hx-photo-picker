@@ -18,12 +18,27 @@ public extension PickerPhotoAsset {
   /**
    * Create a new instance of `PickerPhotoAsset`.
    */
-  init(localIdentifier: String) {
-    self.init(std.string(localIdentifier))
+  init(uri: String, type: MediaType, width: Double, height: Double) {
+    self.init(std.string(uri), type, width, height)
   }
 
   @inline(__always)
-  var localIdentifier: String {
-    return String(self.__localIdentifier)
+  var uri: String {
+    return String(self.__uri)
+  }
+  
+  @inline(__always)
+  var type: MediaType {
+    return self.__type
+  }
+  
+  @inline(__always)
+  var width: Double {
+    return self.__width
+  }
+  
+  @inline(__always)
+  var height: Double {
+    return self.__height
   }
 }

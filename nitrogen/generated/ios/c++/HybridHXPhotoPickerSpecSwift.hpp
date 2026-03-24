@@ -190,12 +190,12 @@ namespace margelo::nitro::hxphotopicker { struct NotAuthorizedConfig; }
 namespace margelo::nitro::hxphotopicker { struct PickerResult; }
 // Forward declaration of `PickerPhotoAsset` to properly resolve imports.
 namespace margelo::nitro::hxphotopicker { struct PickerPhotoAsset; }
+// Forward declaration of `MediaType` to properly resolve imports.
+namespace margelo::nitro::hxphotopicker { enum class MediaType; }
 // Forward declaration of `CaptureType` to properly resolve imports.
 namespace margelo::nitro::hxphotopicker { enum class CaptureType; }
 // Forward declaration of `CaptureMediaResult` to properly resolve imports.
 namespace margelo::nitro::hxphotopicker { struct CaptureMediaResult; }
-// Forward declaration of `MediaType` to properly resolve imports.
-namespace margelo::nitro::hxphotopicker { enum class MediaType; }
 
 #include "PickerConfig.hpp"
 #include <string>
@@ -290,9 +290,9 @@ namespace margelo::nitro::hxphotopicker { enum class MediaType; }
 #include "PickerResult.hpp"
 #include <functional>
 #include "PickerPhotoAsset.hpp"
+#include "MediaType.hpp"
 #include "CaptureType.hpp"
 #include "CaptureMediaResult.hpp"
-#include "MediaType.hpp"
 
 #include "NitroHxPhotoPicker-Swift-Cxx-Umbrella.hpp"
 

@@ -18,14 +18,8 @@ public extension CaptureMediaResult {
   /**
    * Create a new instance of `CaptureMediaResult`.
    */
-  init(uri: String, type: MediaType, width: Double, height: Double, localIdentifier: String?) {
-    self.init(std.string(uri), type, width, height, { () -> bridge.std__optional_std__string_ in
-      if let __unwrappedValue = localIdentifier {
-        return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
-      } else {
-        return .init()
-      }
-    }())
+  init(uri: String, type: MediaType, width: Double, height: Double) {
+    self.init(std.string(uri), type, width, height)
   }
 
   @inline(__always)
@@ -46,17 +40,5 @@ public extension CaptureMediaResult {
   @inline(__always)
   var height: Double {
     return self.__height
-  }
-  
-  @inline(__always)
-  var localIdentifier: String? {
-    return { () -> String? in
-      if bridge.has_value_std__optional_std__string_(self.__localIdentifier) {
-        let __unwrapped = bridge.get_std__optional_std__string_(self.__localIdentifier)
-        return String(__unwrapped)
-      } else {
-        return nil
-      }
-    }()
   }
 }
