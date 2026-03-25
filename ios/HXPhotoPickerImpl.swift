@@ -1554,11 +1554,9 @@ private extension HXPhotoPickerImpl {
       cameraConfig.allowsEditing = allowsEditing
     }
     #endif
-    #if HXPICKER_ENABLE_CAMERA_LOCATION
     if let allowLocation = config.allowLocation {
       cameraConfig.allowLocation = allowLocation
     }
-    #endif
   }
 
   #if HXPICKER_ENABLE_EDITOR
