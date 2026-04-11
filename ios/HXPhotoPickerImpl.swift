@@ -218,8 +218,6 @@ private extension HXPhotoPickerImpl {
     }
     if let languageType = config.languageType {
       pickerConfig.languageType = mapLanguageType(languageType)
-    } else {
-      pickerConfig.languageType = resolvePreferredLanguageType()
     }
     if let appearanceStyle = config.appearanceStyle {
       pickerConfig.appearanceStyle = mapAppearanceStyle(appearanceStyle)
@@ -1493,8 +1491,6 @@ private extension HXPhotoPickerImpl {
     }
     if let languageType = config.languageType {
       cameraConfig.languageType = mapLanguageType(languageType)
-    } else {
-      cameraConfig.languageType = resolvePreferredLanguageType()
     }
     if let prefersStatusBarHidden = config.prefersStatusBarHidden {
       cameraConfig.prefersStatusBarHidden = prefersStatusBarHidden
@@ -1574,8 +1570,6 @@ private extension HXPhotoPickerImpl {
     }
     if let languageType = config.languageType {
       editorConfig.languageType = mapLanguageType(languageType)
-    } else {
-      editorConfig.languageType = resolvePreferredLanguageType()
     }
     if let prefersStatusBarHidden = config.prefersStatusBarHidden {
       editorConfig.prefersStatusBarHidden = prefersStatusBarHidden
@@ -2374,24 +2368,6 @@ private extension HXPhotoPickerImpl {
     case .urdu:
       return .urdu
     }
-  }
-
-  func resolvePreferredLanguageType() -> LanguageType {
-    guard let language = (
-      Bundle.main.preferredLocalizations.first ??
-      Locale.preferredLanguages.first
-    )?.lowercased() else {
-      return .system
-    }
-    if language.hasPrefix("zh-hant") ||
-      language.hasPrefix("zh-hk") ||
-      language.hasPrefix("zh-tw") {
-      return .traditionalChinese
-    }
-    if language.hasPrefix("zh") {
-      return .simplifiedChinese
-    }
-    return .system
   }
 
   func mapPhotoListCameraType(
