@@ -114,11 +114,16 @@ public final class HXPhotoPickerImpl: HybridHXPhotoPickerSpec {
 }
 
 private extension HXPhotoPickerImpl {
-  func pickerFileConfig(for asset: PhotoAsset) -> PhotoAsset.FileConfig {
+  func pickerFileConfig(for asset: PhotoAsset) -> PhotoAsset.FileConfig? {
     if asset.mediaType == .video {
       return .init(videoURL: temporaryURL(ext: "mp4"))
     }
-    return .init(imageURL: temporaryURL(ext: "jpg"))
+    let resources = asset.phAsset.map { PHAssetResource.assetResources(for: $0) } ?? []
+    let needsConversion = resources.contains {
+      ["heic", "heif"].contains(($0.originalFilename as NSString).pathExtension.lowercased())
+    }
+    // HX 将 HEIC/HEIF 解码成 PNG，其余图片使用默认导出格式。
+    return needsConversion ? .init(imageURL: temporaryURL(ext: "png")) : nil
   }
 
   func readableVideoURL(for asset: PhotoAsset, fallback: URL) async -> URL {
